@@ -4,40 +4,30 @@ set -e
 usage() {
 	base="$(basename "$0")"
 	cat <<EOUSAGE
-
 usage: $base command [args]
-
-This script assumes that is is run from the root of your Go package (for
+This script assumes that it is run from the root of your Go package (for
 example, "/go/src/app" if your GOPATH is set to "/go").
-
 In Go 1.4, a feature was introduced to supply the canonical "import path" for a
 given package in a comment attached to a package statement
 (https://golang.org/s/go14customimport).
-
 This script allows us to take a generic directory of Go source files such as
 "/go/src/app" and determine that the canonical "import path" of where that code
 expects to live and reference itself is "github.com/jsmith/my-cool-app".  It
 will then ensure that "/go/src/github.com/jsmith/my-cool-app" is a symlink to
 "/go/src/app", which allows us to build and run it under the proper package
 name.
-
 For compatibility with versions of Go older than 1.4, the "import path" may also
 be placed in a file named ".godir".
-
 Available Commands:
-
   $base download
   $base download -u
     (equivalent to "go get -d [args] [godir]")
-
   $base install
   $base install -race
     (equivalent to "go install [args] [godir]")
-
   $base run
   $base run -app -specific -arguments
     (assumes "GOPATH/bin" is in "PATH")
-
 EOUSAGE
 }
 
