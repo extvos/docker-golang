@@ -1,6 +1,6 @@
 FROM extvos/alpine:latest
 
-RUN apk add --no-cache ca-certificates
+RUN apk add --no-cache ca-certificates patch
 
 ENV GOLANG_VERSION 1.17.6
 
